@@ -1,8 +1,7 @@
 use tonic::{transport::Server, Request, Response, Status};
 
 use bookstore::bookstore_server::{Bookstore, BookstoreServer};
-use bookstore::{GetBookRequest, GetBookResponse};
-
+use bookstore::{GetBookReq, GetBookRsp};
 
 mod bookstore {
     include!("bookstore.rs");
@@ -12,19 +11,15 @@ mod bookstore {
         tonic::include_file_descriptor_set!("greeter_descriptor");
 }
 
-
 #[derive(Default)]
 pub struct BookStoreImpl {}
 
 #[tonic::async_trait]
 impl Bookstore for BookStoreImpl {
-    async fn get_book(
-        &self,
-        request: Request<GetBookRequest>,
-    ) -> Result<Response<GetBookResponse>, Status> {
+    async fn get_book(&self, request: Request<GetBookReq>) -> Result<Response<GetBookRsp>, Status> {
         println!("Request from {:?}", request.remote_addr());
 
-        let response = GetBookResponse {
+        let response = GetBookRsp {
             id: request.into_inner().id,
             author: "Peter".to_owned(),
             name: "Zero to One".to_owned(),

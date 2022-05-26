@@ -1,12 +1,12 @@
 /// The request with a id of the book
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct GetBookRequest {
+pub struct GetBookReq {
     #[prost(string, tag="1")]
     pub id: ::prost::alloc::string::String,
 }
 /// The response details of a book
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct GetBookResponse {
+pub struct GetBookRsp {
     #[prost(string, tag="1")]
     pub id: ::prost::alloc::string::String,
     #[prost(string, tag="2")]
@@ -84,8 +84,8 @@ pub mod bookstore_client {
         /// Retrieve a book
         pub async fn get_book(
             &mut self,
-            request: impl tonic::IntoRequest<super::GetBookRequest>,
-        ) -> Result<tonic::Response<super::GetBookResponse>, tonic::Status> {
+            request: impl tonic::IntoRequest<super::GetBookReq>,
+        ) -> Result<tonic::Response<super::GetBookRsp>, tonic::Status> {
             self.inner
                 .ready()
                 .await
@@ -113,8 +113,8 @@ pub mod bookstore_server {
         /// Retrieve a book
         async fn get_book(
             &self,
-            request: tonic::Request<super::GetBookRequest>,
-        ) -> Result<tonic::Response<super::GetBookResponse>, tonic::Status>;
+            request: tonic::Request<super::GetBookReq>,
+        ) -> Result<tonic::Response<super::GetBookRsp>, tonic::Status>;
     }
     /// The book store service definition.
     #[derive(Debug)]
@@ -167,16 +167,16 @@ pub mod bookstore_server {
                 "/bookstore.Bookstore/GetBook" => {
                     #[allow(non_camel_case_types)]
                     struct GetBookSvc<T: Bookstore>(pub Arc<T>);
-                    impl<T: Bookstore> tonic::server::UnaryService<super::GetBookRequest>
+                    impl<T: Bookstore> tonic::server::UnaryService<super::GetBookReq>
                     for GetBookSvc<T> {
-                        type Response = super::GetBookResponse;
+                        type Response = super::GetBookRsp;
                         type Future = BoxFuture<
                             tonic::Response<Self::Response>,
                             tonic::Status,
                         >;
                         fn call(
                             &mut self,
-                            request: tonic::Request<super::GetBookRequest>,
+                            request: tonic::Request<super::GetBookReq>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
                             let fut = async move { (*inner).get_book(request).await };
