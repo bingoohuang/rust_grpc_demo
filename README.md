@@ -138,7 +138,6 @@ message GetBookResponse {
 }
 ```
 
-
 We will create our gRPC service with [tonic](https://docs.rs/tonic/latest/tonic/). Add the following dependencies to the Cargo.toml file:
 
 ```toml
@@ -186,7 +185,7 @@ One more thing before we are ready to compile.`tonic-build` depends on the [Prot
 
 `$ brew install protobuf`
 
-And double check that the *protobuf* compiler is installed properly:
+And double check that the _protobuf_ compiler is installed properly:
 
 ```sh
 $ protoc --version
@@ -394,7 +393,42 @@ bookstore.Bookstore
 grpc.reflection.v1alpha.ServerReflection
 ```
 
+or by grpc_cli: `brew install grpc`
+
+```sh
+$ grpc_cli list localhost:50051
+bookstore.Bookstore
+grpc.reflection.v1alpha.ServerReflection
+
+$ grpc_cli call localhost:50051 bookstore.Bookstore.GetBook "id: 'test-book-id'"
+connecting to localhost:50051
+Received initial metadata from server:
+date : Thu, 26 May 2022 04:24:31 GMT
+id: "test-book-id"
+name: "Zero to One"
+author: "Peter"
+year: 2014
 Rpc succeeded with OK status
+```
+
+Rpc succeeded with OK status
+
 Looks like it works! And that, my friend, is how we build a gRPC server in Rust.
 
 That’s it for today. Thanks for reading and happy coding! As usual, the source code is available on [GitHub](https://github.com/yzhong52/rust_grpc_demo).
+
+## cargo upgrade
+
+[cargo-upgrades](https://crates.io/crates/cargo-upgrades)
+
+```sh
+$ cargo install -f cargo-edit
+   Installed package `cargo-edit v0.9.1` (executables `cargo-add`, `cargo-rm`, `cargo-set-version`, `cargo-upgrade`)
+
+$ cargo upgrade
+    Updating 'https://mirrors.sjtug.sjtu.edu.cn/git/crates.io-index' index
+rust_grpc_demo:
+    Upgrading prost v0.10.1 -> v0.10.4
+    Upgrading tokio v1.18.0 -> v1.18.2
+    Upgrading tonic v0.7.1 -> v0.7.2
+```
