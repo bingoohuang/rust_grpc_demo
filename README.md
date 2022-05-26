@@ -22,11 +22,11 @@ In the meantime, gRPC has caught up with more and more features with a healthier
 
 ![](images/2022-05-26-10-12-23.png)
 
-Comparison between GRPC (blue) with Apache Thrift (red). Google Trends
+Comparison between GRPC (blue) with Apache Thrift (red). [Google Trends](https://trends.google.com/trends/explore?date=all&q=GRPC,%2Fm%2F02qd4d1)
 
 ![](images/2022-05-26-10-13-20.png)
 
-GitHub star history between gRPC, fbThrift, and Apache Thrift. https://star-history.com
+GitHub star history between gRPC, fbThrift, and Apache Thrift. [https://star-history.com](https://star-history.com/#grpc/grpc&facebook/fbthrift&apache/thrift&Date)
 
 As of today, unless your application is affiliated with Facebook in someway, there is no good reason to consider Thrift.
 
