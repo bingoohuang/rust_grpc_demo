@@ -2,7 +2,7 @@
 
 A Demo for GRPC Server With Rust.
 
-from blog [Building a gRPC Server With Rust](https://betterprogramming.pub/building-a-grpc-server-with-rust-be2c52f0860e)
+from blog [Building a gRPC Server With Rust](https://yzhong52.github.io/2022/05/01/rust-grpc.html)
 
 ## Background and Introduction
 
